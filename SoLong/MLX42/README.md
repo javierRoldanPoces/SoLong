@@ -287,7 +287,7 @@ void	hook(void *param)
 		g_img->instances[0].x += 5;
 }
 
-int32_t	main(void)
+int	main(void)
 {
 	mlx_t	*mlx;
 
