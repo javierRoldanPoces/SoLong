@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   so_long_valid_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 18:52:25 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/08 18:52:32 by Jroldan-         ###   ########.fr       */
+/*   Created: 2023/05/08 19:39:21 by Jroldan-          #+#    #+#             */
+/*   Updated: 2023/05/08 19:45:44 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+int	valid_walls(char *str)
 {
-	size_t			i;
-	unsigned char	*s1cpy;
-	unsigned char	*s2cpy;
+	int	i;
 
 	i = 0;
-	s1cpy = (unsigned char *)s1;
-	s2cpy = (unsigned char *)s2;
-	while (i < n)
+	while (str[i] != '\0')
 	{
-		if (*s1cpy != *s2cpy)
-			return (*s1cpy - *s2cpy);
+		if (str[i] != '1')
+			return (0);
 		i++;
-		s1cpy++;
-		s2cpy++;
 	}
-	return (0);
+	return (1);
 }
 
-void	ft_leaks(void)
+// controlar muros a 1 , sea un rectangulo , almenos una E , almenos una C
+int	map_valid(t_so_long *c)
 {
-	system("leaks so_long");
+	int	i;
+
+	i = 0;
+	if (c->h == c->w)
+	{
+		write(1, "error", 5);
+		return (-1);
+	}
+	return (0);
 }
