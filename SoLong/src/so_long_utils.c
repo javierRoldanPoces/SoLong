@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:25 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/08 18:52:32 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:53:28 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,26 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 void	ft_leaks(void)
 {
 	system("leaks so_long");
+}
+
+char	**cpy_matrix(t_so_long *c)
+{
+	int		fil;
+	int		col;
+	char	**cpy_matrix;
+
+	cpy_matrix = (char **)ft_calloc(sizeof(char *), c->h + 1);
+	fil = 0;
+	while (fil < c->h)
+	{
+		col = 0;
+		cpy_matrix[fil] = (char *)ft_calloc(sizeof(char *), c->w);
+		while (col < c->w)
+		{
+			cpy_matrix[fil][col] = c->map[fil][col];
+			col++;
+		}
+		fil++;
+	}
+	return (cpy_matrix);
 }

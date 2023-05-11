@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:54:20 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/08 19:22:56 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:04:32 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,22 @@ typedef struct so_so_long
 	char	**map;
 	int		h;
 	int		w;
+	int		count_c;
+	int		count_e;
+	int		count_p;
+	int		player[2];
 }	t_so_long;
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}	t_point;
 
 void	hook(void *param);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		read_maps(t_so_long *c, char *name_file);
 int		read_maps_2(t_so_long *c, char *name_file);
-void	print_matrix(t_so_long *c);
+void	print_matrix(char **c, int size_file, int size_col);
 void	ft_leaks(void);
 int		map_valid(t_so_long *c);
+int		look(t_so_long *c, char s);
+void	flood_fill(char **map, int i, int j);
+char	**cpy_matrix(t_so_long *c);
+void	look_p(t_so_long *c);
 
 #endif

@@ -13,7 +13,7 @@ DIR_MAKE_MLX	=	./MLX42
 DIR_SRC			=	./src/
 DIR_GNL			=	./GNL/
 SRC				=	$(DIR_SRC)so_long.c $(DIR_GNL)get_next_line_utils.c $(DIR_GNL)get_next_line.c \
-					$(DIR_SRC)so_long_utils.c
+					$(DIR_SRC)so_long_utils.c $(DIR_SRC)so_long_read_maps.c $(DIR_SRC)so_long_valid_map.c
 OBJ				=	$(SRC:.c=.o)
 
 all: make_mlx $(NAME)

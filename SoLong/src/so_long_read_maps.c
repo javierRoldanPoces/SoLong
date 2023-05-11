@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:58:08 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/08 19:38:57 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:00:21 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	read_maps(t_so_long *c, char *name_file)
 			return (free(line), -3);
 		c->h++;
 	}
+	c->h--;
 	free(line);
 	close(file);
 	read_maps_2(c, name_file);
@@ -55,26 +56,24 @@ int	read_maps_2(t_so_long *c, char *name_file)
 	while (c->map[f])
 		c->map[++f] = get_next_line(file);
 	close(file);
-	print_matrix(c);
 	return (0);
 }
 
-void	print_matrix(t_so_long *c)
+void	print_matrix(char **c, int size_file, int size_col)
 {
 	int	fil;
 	int	col;
 
 	fil = 0;
-	while (fil < c->h)
+	while (fil < size_file)
 	{
 		col = 0;
 		write(1, "\n", 1);
-		while (col < c->w)
+		while (col < size_col)
 		{
-			write(1, &c->map[fil][col], 1);
+			write(1, &c[fil][col], 1);
 			col++;
 		}
 		fil++;
 	}
 }
-

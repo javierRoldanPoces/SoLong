@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:17 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/08 19:22:30 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:01:45 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	init_so_long(t_so_long *c)
 		exit(EXIT_FAILURE);
 	c->h = 0;
 	c->w = 0;
+	c->count_c = 0;
+	c->count_e = 0;
+	c->count_p = 0;
 }
 
 int	main(int argc, char **argv)
@@ -47,8 +50,8 @@ int	main(int argc, char **argv)
 	(void)argc;
 	init_so_long(&so_long);
 	read_maps(&so_long, argv[1]);
-	if (map_valid(&so_long) == -1)
-		printf("Mapa No valido\n");
+	print_matrix(so_long.map, so_long.h, so_long.w);
+	map_valid(&so_long);
 	//atexit(ft_leaks);
 	/*g_img = mlx_new_image(&so_long.mlx, 256, 256);
 	memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
