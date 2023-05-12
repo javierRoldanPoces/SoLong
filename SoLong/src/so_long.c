@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:17 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/11 19:01:45 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:25:22 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	init_so_long(t_so_long *c)
 	c->count_c = 0;
 	c->count_e = 0;
 	c->count_p = 0;
+	c->player[0] = 0;
+	c->player[1] = 0;
 }
 
 int	main(int argc, char **argv)
@@ -51,7 +53,8 @@ int	main(int argc, char **argv)
 	init_so_long(&so_long);
 	read_maps(&so_long, argv[1]);
 	print_matrix(so_long.map, so_long.h, so_long.w);
-	map_valid(&so_long);
+	if (map_valid(&so_long) == 1)
+		exit (1);
 	//atexit(ft_leaks);
 	/*g_img = mlx_new_image(&so_long.mlx, 256, 256);
 	memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));

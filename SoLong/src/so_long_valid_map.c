@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:39:21 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/11 19:37:50 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:24:09 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,23 @@ static int	all_one(t_so_long *c)
 	int	i;
 
 	i = -1;
-
 	while (++i < c->w)
 	{
-		if (c->map[0][i] != '1')
-			return (-1);
-		if (c->map[c->h - 1][i] != '1')
-			return (-1);
+		if (c->map[0][i] != '1' || (c->map[c->h - 1][i] != '1'))
+			return (1);
 	}
 	i = -1;
 	while (++i < c->h)
 	{
-		if (c->map[i][0] != '1')
-			return (-1);
-		if (c->map[i][c->w - 1] != '1')
-			return (-1);
+		if (c->map[i][0] != '1' || (c->map[i][c->w - 1] != '1'))
+			return (1);
 	}
-	printf("\nMapa rodeado de muros\n");
-	return (1);
+	ft_printf("\nMapa rodeado de muros\n");
+	return (0);
 }
 
 void	flood_fill(char **map, int i, int j)
 {
-
 	map[i][j] = 'M';
 	if (map[i + 1][j] == '0' || map[i + 1][j] == 'C' || map[i + 1][j] == 'E')
 		flood_fill(map, i + 1, j);
@@ -106,16 +100,13 @@ int	valid_path(char **c, int size_file, int size_col)
 
 	file = 1;
 	col = 1;
-	while (file < size_file -2)
+	while (file < size_file - 1)
 	{
 		col = 0;
-		while (col < size_col - 2)
+		while (col < size_col - 1)
 		{
 			if (c[file][col] != 'M' && c[file][col] != '1')
-			{
-				printf("\nMapa sin salida\n");
-				exit (1);
-			}
+				return (1);
 		col++;
 		}
 		file++;
@@ -132,17 +123,16 @@ int	map_valid(t_so_long *c)
 	cpy = cpy_matrix(c);
 	i = 0;
 	if ((c->w == c->h) || c->w < 3 || c->h < 3)
-		return (write(1, "Map_Cuadrado\n", 13), -1);
-	all_one(c);
-	look_p(c);
+		return (write(1, "Map_Cuadrado\n", 13), 1);
+	if (all_one(c) == 1)
+		return (ft_printf("Mapa no rodeando de muros \n"), 1);
 	if (look(c, 'E') != 1 || look(c, 'P') != 1 || look(c, 'C') < 1)
-	{	
-		printf("Mapa No valido");
-		exit(1);
-	}
+		return (ft_printf("no se cumplen requisitos del mapa"), 1);
+	look_p(c);
 	flood_fill(cpy, c->player[0], c->player[1]);
 	print_matrix(cpy, c->h, c->w);
-	valid_path(cpy, c->h, c->w);
+	if (valid_path(cpy, c->h, c->w) == 1)
+		return (printf("\nMapa sin salida\n"), 1);
 	// liberar memoria de cada fila 
-	return (1);
+	return (0);
 }

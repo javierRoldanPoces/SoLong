@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:58:08 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/11 19:00:21 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:31:53 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	read_maps(t_so_long *c, char *name_file)
 
 	file = open(name_file, O_RDONLY);
 	if (file < 0)
-		return (-2);
+		return (ft_printf("Error abriendo fichero", -1));
 	size = (int)ft_strlen(name_file);
 	if (ft_memcmp(&name_file[size - 4], ".ber", 4))
-		return (write(1, "ERROR", 5), -1);
+		return (ft_printf("Extension de archivo no válida"), -1);
 	line = get_next_line(file);
 	c->h++;
 	c->w = (int)ft_strlen(line) - 1;

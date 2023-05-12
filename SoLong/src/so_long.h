@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:54:20 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/11 19:04:32 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:23:17 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <unistd.h>
 # include <memory.h>
 # include "../GNL/get_next_line.h"
+# include "../ft_printf/ft_printf.h"
 
 typedef struct so_so_long
 {
@@ -43,8 +44,7 @@ void	print_matrix(char **c, int size_file, int size_col);
 void	ft_leaks(void);
 int		map_valid(t_so_long *c);
 int		look(t_so_long *c, char s);
+void	look_p(t_so_long *c);
 void	flood_fill(char **map, int i, int j);
 char	**cpy_matrix(t_so_long *c);
-void	look_p(t_so_long *c);
-
 #endif
