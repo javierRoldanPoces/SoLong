@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:39:21 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/12 11:24:09 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:00:02 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ int	map_valid(t_so_long *c)
 	int		i;
 	char	**cpy;
 
-	cpy = cpy_matrix(c);
 	i = 0;
 	if ((c->w == c->h) || c->w < 3 || c->h < 3)
 		return (write(1, "Map_Cuadrado\n", 13), 1);
@@ -129,10 +128,11 @@ int	map_valid(t_so_long *c)
 	if (look(c, 'E') != 1 || look(c, 'P') != 1 || look(c, 'C') < 1)
 		return (ft_printf("no se cumplen requisitos del mapa"), 1);
 	look_p(c);
+	cpy = cpy_matrix(c);
 	flood_fill(cpy, c->player[0], c->player[1]);
 	print_matrix(cpy, c->h, c->w);
 	if (valid_path(cpy, c->h, c->w) == 1)
-		return (printf("\nMapa sin salida\n"), 1);
-	// liberar memoria de cada fila 
+		return (printf("\nMapa sin salida\n"), free_cpy_matrix(cpy, c->h), 1);
+	free_cpy_matrix(cpy, c->h);
 	return (0);
 }

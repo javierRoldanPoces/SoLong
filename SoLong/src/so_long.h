@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:54:20 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/12 10:23:17 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:50:07 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ int		look(t_so_long *c, char s);
 void	look_p(t_so_long *c);
 void	flood_fill(char **map, int i, int j);
 char	**cpy_matrix(t_so_long *c);
+void	free_cpy_matrix(char **c, int fil);
 #endif

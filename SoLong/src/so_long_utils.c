@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:25 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/12 10:03:09 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/12 12:49:55 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**cpy_matrix(t_so_long *c)
 
 	cpy_matrix = (char **)ft_calloc(sizeof(char *), c->h + 1);
 	if (cpy_matrix == NULL)
-		return(write(1, "Memory error", 12), NULL);
+		return (write(1, "Memory error", 12), NULL);
 	fil = 0;
 	while (fil < c->h)
 	{
@@ -59,4 +59,17 @@ char	**cpy_matrix(t_so_long *c)
 		fil++;
 	}
 	return (cpy_matrix);
+}
+
+void	free_cpy_matrix(char **c, int fil)
+{
+	int	i;
+
+	i = 0;
+	while (i < fil)
+	{
+		free(c[i]);
+		i++;
+	}
+	free(c);
 }

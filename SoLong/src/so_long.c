@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:17 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/12 11:25:22 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:00:18 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,25 @@ int	main(int argc, char **argv)
 {
 	t_so_long	so_long;
 
+	atexit(ft_leaks);
 	(void)argc;
+	(void)argv;
 	init_so_long(&so_long);
 	read_maps(&so_long, argv[1]);
 	print_matrix(so_long.map, so_long.h, so_long.w);
 	if (map_valid(&so_long) == 1)
+	{
+		free_cpy_matrix(so_long.map, so_long.w);
+		mlx_terminate(so_long.mlx);
 		exit (1);
-	//atexit(ft_leaks);
+	}
 	/*g_img = mlx_new_image(&so_long.mlx, 256, 256);
 	memset(g_img->pixels, 255, g_img->width * g_img->height * sizeof(int));
 	mlx_image_to_window(&so_long.mlx, g_img, 0, 0);
 	mlx_loop_hook(&so_long.mlx, &hook, &so_long.mlx);
 	mlx_loop(&so_long.mlx);
-	mlx_terminate(&so_long.mlx);*/
+	*/
+	mlx_terminate(so_long.mlx);
+	free_cpy_matrix(so_long.map, so_long.h);
 	return (EXIT_SUCCESS);
 }
