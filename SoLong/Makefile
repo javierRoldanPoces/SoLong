@@ -15,7 +15,8 @@ DIR_SRC			=	./src/
 DIR_GNL			=	./GNL/
 DIR_FT_PRINTF	=	./ft_printf
 SRC				=	$(DIR_SRC)so_long.c $(DIR_GNL)get_next_line_utils.c $(DIR_GNL)get_next_line.c \
-					$(DIR_SRC)so_long_utils.c $(DIR_SRC)so_long_read_maps.c $(DIR_SRC)so_long_valid_map.c 
+					$(DIR_SRC)so_long_utils.c $(DIR_SRC)so_long_read_maps.c $(DIR_SRC)so_long_valid_map.c \
+					$(DIR_SRC)so_long_paint_maps.c
 OBJ				=	$(SRC:.c=.o)
 
 all: make_mlx make_ft_printf $(NAME)
@@ -27,7 +28,7 @@ make_mlx:
 
 $(NAME):	$(OBJ)
 			@gcc $(SRC) -g3 $(CFLAGS) -o $(NAME) $(DIR_MAKE_MLX)/libmlx42.a $(DIR_FT_PRINTF)/ft_printf.a $(INCLUDES)
-			@echo So_long compilado
+			@echo completed
 
 re:		fclean all
 
@@ -40,6 +41,6 @@ fclean:		clean
 			@$(MAKE) -s fclean -C $(DIR_MAKE_MLX)
 			@$(MAKE) -s fclean -C $(DIR_FT_PRINTF)
 			@$(RM) $(NAME) 
-			@echo Todo limpio
+			@echo all cleaned
 
 .PHONY: 	all make_mlx make_ft_printf re clean fclean

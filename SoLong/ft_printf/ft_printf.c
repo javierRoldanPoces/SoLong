@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jroldan- <jroldan-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 17:39:31 by jroldan-          #+#    #+#             */
-/*   Updated: 2023/01/25 17:33:10 by jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/14 11:10:46 by javier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	*condition_num(char *p, va_list args, int *len)
 		ft_putnbr_hex(va_arg(args, unsigned int), "0123456789abcdef", len, p);
 		p += 1;
 	}
-	else if (*p == 'd' | *p == 'i')
+	else if (*p == 'd' || *p == 'i')
 	{
 		ft_putnbr_d_i(va_arg(args, int), len);
 		p += 1;

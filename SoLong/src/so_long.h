@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:54:20 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/12 15:02:13 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/14 18:26:58 by javier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 256
+# define HEIGHT 256
 # include <stdio.h>
 # include <stdlib.h>
 # include <stddef.h>
@@ -36,6 +36,16 @@ typedef struct so_so_long
 	int		player[2];
 	mlx_image_t		*bg;
 	mlx_texture_t	*t_bg;
+	mlx_image_t		*dog;
+	mlx_texture_t	*t_dog;
+	mlx_image_t		*wall;
+	mlx_texture_t	*t_wall;
+	mlx_image_t		*bone;
+	mlx_texture_t	*t_bone;
+	mlx_image_t		*closed;
+	mlx_texture_t	*t_closed;
+	mlx_image_t		*open;
+	mlx_texture_t	*t_open;
 }	t_so_long;
 
 void	hook(void *param);
@@ -50,4 +60,6 @@ void	look_p(t_so_long *c);
 void	flood_fill(char **map, int i, int j);
 char	**cpy_matrix(t_so_long *c);
 void	free_cpy_matrix(char **c, int fil);
+void    paint_maps (t_so_long *c);
+
 #endif

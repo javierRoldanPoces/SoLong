@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_read_maps.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:58:08 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/12 10:31:53 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/14 17:51:53 by javier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	read_maps(t_so_long *c, char *name_file)
 	file = open(name_file, O_RDONLY);
 	if (file < 0)
 		return (ft_printf("Error abriendo fichero", -1));
+	c->w = 0;
+	c->h = 0;
 	size = (int)ft_strlen(name_file);
 	if (ft_memcmp(&name_file[size - 4], ".ber", 4))
 		return (ft_printf("Extension de archivo no válida"), -1);

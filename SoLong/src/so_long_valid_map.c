@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_valid_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:39:21 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/12 13:00:02 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/14 11:12:59 by javier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,8 @@ int	valid_path(char **c, int size_file, int size_col)
 
 int	map_valid(t_so_long *c)
 {
-	int		i;
 	char	**cpy;
-
-	i = 0;
+	
 	if ((c->w == c->h) || c->w < 3 || c->h < 3)
 		return (write(1, "Map_Cuadrado\n", 13), 1);
 	if (all_one(c) == 1)
