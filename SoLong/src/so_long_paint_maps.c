@@ -6,7 +6,7 @@
 /*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:46:31 by javier            #+#    #+#             */
-/*   Updated: 2023/05/14 18:27:40 by javier           ###   ########.fr       */
+/*   Updated: 2023/05/15 00:03:27 by javier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,12 @@ void    paint_maps(t_so_long *c)
                 mlx_image_to_window(c->mlx, c->bone, col * 64, fil * 64);
             else if (c->map[fil][col] == 'E')
                 mlx_image_to_window(c->mlx, c->open ,col * 64, fil *64);
+            // else if (c->map[fil][col] == 'P')
+            // {
+            //     c->player[0] = fil;
+            //     c->player[1] = col;
+            //     mlx_image_to_window(c->mlx, c->dog ,col * 64, fil *64);
+            // }
         }
     }
-    
-    
 }

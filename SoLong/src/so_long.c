@@ -6,28 +6,57 @@
 /*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:17 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/14 18:25:54 by javier           ###   ########.fr       */
+/*   Updated: 2023/05/15 00:00:52 by javier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-void	hook(void *param)
+// void	hook(void *param)
+// {
+// 	t_so_long	*so_long;
+
+// 	so_long = (t_so_long *)param;
+// 	if (mlx_is_key_down(so_long->mlx, MLX_KEY_ESCAPE))
+// 		mlx_close_window(so_long->mlx);
+// 	if (mlx_is_key_down(so_long->mlx, MLX_KEY_UP) || mlx_is_key_down(so_long->mlx, MLX_KEY_W))
+// 		so_long->dog->instances[0].y -= 64;
+// 	if (mlx_is_key_down(so_long->mlx, MLX_KEY_DOWN) || mlx_is_key_down(so_long->mlx, MLX_KEY_S))
+// 		so_long->dog->instances[0].y += 64;
+// 	if (mlx_is_key_down(so_long->mlx, MLX_KEY_LEFT) || mlx_is_key_down(so_long->mlx, MLX_KEY_A))
+// 		so_long->dog->instances[0].x -= 64;
+// 	if (mlx_is_key_down(so_long->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(so_long->mlx, MLX_KEY_D))
+// 		so_long->dog->instances[0].x += 64;
+// }
+
+void my_keyhook(mlx_key_data_t keydata, void* param)
 {
-	t_so_long	*so_long;
+	t_so_long *so_long;
 
 	so_long = (t_so_long *)param;
-	if (mlx_is_key_down(so_long->mlx, MLX_KEY_ESCAPE))
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(so_long->mlx);
-	if (mlx_is_key_down(so_long->mlx, MLX_KEY_UP) || mlx_is_key_down(so_long->mlx, MLX_KEY_W))
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+	{
 		so_long->dog->instances[0].y -= 64;
-	if (mlx_is_key_down(so_long->mlx, MLX_KEY_DOWN) || mlx_is_key_down(so_long->mlx, MLX_KEY_S))
+	}
+	if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+	{
 		so_long->dog->instances[0].y += 64;
-	if (mlx_is_key_down(so_long->mlx, MLX_KEY_LEFT) || mlx_is_key_down(so_long->mlx, MLX_KEY_A))
+	}
+	if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+	{
 		so_long->dog->instances[0].x -= 64;
-	if (mlx_is_key_down(so_long->mlx, MLX_KEY_RIGHT) || mlx_is_key_down(so_long->mlx, MLX_KEY_D))
+	}
+	if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+	{
 		so_long->dog->instances[0].x += 64;
+	}
+
+	// // If we HOLD the 'L' key, print "!".
+	// if (keydata.key == MLX_KEY_L && keydata.action == MLX_REPEAT)
+	// 	puts("!");
 }
 
 void	init_so_long(t_so_long *c)
@@ -71,11 +100,10 @@ int	main(int argc, char **argv)
 		exit (1);
 	}
 	init_so_long(&so_long);
-	//so_long.t_bg = mlx_load_png("img/fondo_playa.png");
-	//so_long.bg = mlx_texture_to_image(so_long.mlx, so_long.t_bg);
 	paint_maps (&so_long);
 	mlx_image_to_window(so_long.mlx, so_long.dog, so_long.player[0] * 64, so_long.player[1] * 64);
-	mlx_loop_hook(so_long.mlx, &hook, &so_long);
+	//mlx_loop_hook(so_long.mlx, &hook, &so_long);
+	mlx_key_hook(so_long.mlx, &my_keyhook, &so_long);
 	mlx_loop(so_long.mlx);
 	//paint_maps (&so_long);
 	mlx_terminate(so_long.mlx);

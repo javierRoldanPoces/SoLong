@@ -6,7 +6,7 @@
 /*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:54:20 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/14 18:26:58 by javier           ###   ########.fr       */
+/*   Updated: 2023/05/14 22:53:49 by javier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct so_so_long
 }	t_so_long;
 
 void	hook(void *param);
+//void hook(mlx_key_data_t keydata, void* param);
+
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		read_maps(t_so_long *c, char *name_file);
 int		read_maps_2(t_so_long *c, char *name_file);
@@ -56,7 +58,7 @@ void	print_matrix(char **c, int size_file, int size_col);
 void	ft_leaks(void);
 int		map_valid(t_so_long *c);
 int		look(t_so_long *c, char s);
-void	look_p(t_so_long *c);
+//void	look_p(t_so_long *c);
 void	flood_fill(char **map, int i, int j);
 char	**cpy_matrix(t_so_long *c);
 void	free_cpy_matrix(char **c, int fil);
