@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_read_maps.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:58:08 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/14 17:51:53 by javier           ###   ########.fr       */
+/*   Updated: 2023/05/26 23:52:28 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	read_maps(t_so_long *c, char *name_file)
+void	read_maps(t_so_long *c, char *name_file)
 {
 	int		file;
 	int		size;
@@ -20,12 +20,12 @@ int	read_maps(t_so_long *c, char *name_file)
 
 	file = open(name_file, O_RDONLY);
 	if (file < 0)
-		return (ft_printf("Error abriendo fichero", -1));
+		ft_printf("Error\nApertura de fichero");
 	c->w = 0;
 	c->h = 0;
 	size = (int)ft_strlen(name_file);
 	if (ft_memcmp(&name_file[size - 4], ".ber", 4))
-		return (ft_printf("Extension de archivo no válida"), -1);
+		ft_control_error(NO_BER, c);
 	line = get_next_line(file);
 	c->h++;
 	c->w = (int)ft_strlen(line) - 1;
@@ -34,17 +34,16 @@ int	read_maps(t_so_long *c, char *name_file)
 		free(line);
 		line = get_next_line(file);
 		if (c->w != (int)ft_strlen(line) - 1 && ft_strlen(line))
-			return (free(line), -3);
+			free(line);
 		c->h++;
 	}
 	c->h--;
 	free(line);
 	close(file);
 	read_maps_2(c, name_file);
-	return (0);
 }
 
-int	read_maps_2(t_so_long *c, char *name_file)
+void	read_maps_2(t_so_long *c, char *name_file)
 {
 	int		f;
 	int		file;
@@ -58,24 +57,58 @@ int	read_maps_2(t_so_long *c, char *name_file)
 	while (c->map[f])
 		c->map[++f] = get_next_line(file);
 	close(file);
-	return (0);
 }
 
-void	print_matrix(char **c, int size_file, int size_col)
+void	ft_control_error(int error, t_so_long *c)
 {
-	int	fil;
-	int	col;
-
-	fil = 0;
-	while (fil < size_file)
+	if (error == NO_BER)
+		(ft_printf("Error\nExtension de archivo no válida"));
+	if (error == FIN)
 	{
-		col = 0;
-		write(1, "\n", 1);
-		while (col < size_col)
-		{
-			write(1, &c[fil][col], 1);
-			col++;
-		}
-		fil++;
+		while (--c->h)
+			free(c->map[c->h]);
+		free(c->map[c->h]);
+		free(c->map);
+		ft_delete_img(c);
+		mlx_close_window(c->mlx);
+		mlx_terminate(c->mlx);
+		exit(ft_printf("\nFin Programa\n"));
 	}
+	if (error == MAPA_NO_VALID)
+		exit(write(1, "\n[ERROR]Mapa no correcto.\n\n", 28));
 }
+
+void	ft_delete_img(t_so_long *c)
+{
+	mlx_delete_texture(c->t_bg);
+	mlx_delete_image(c->mlx, c->bg);
+	mlx_delete_texture(c->t_dog);
+	mlx_delete_image(c->mlx, c->dog);
+	mlx_delete_texture(c->t_wall);
+	mlx_delete_image(c->mlx, c->wall);
+	mlx_delete_texture(c->t_bone);
+	mlx_delete_image(c->mlx, c->bone);
+	// mlx_delete_texture(c->t_closed);
+	// mlx_delete_image(c->mlx, c->closed);
+	mlx_delete_texture(c->t_open);
+	mlx_delete_image(c->mlx, c->open);
+}
+
+// void	print_matrix(char **c, int size_file, int size_col)
+// {
+// 	int	fil;
+// 	int	col;
+
+// 	fil = 0;
+// 	while (fil < size_file)
+// 	{
+// 		col = 0;
+// 		write(1, "\n", 1);
+// 		while (col < size_col)
+// 		{
+// 			write(1, &c[fil][col], 1);
+// 			col++;
+// 		}
+// 		fil++;
+// 	}
+// }

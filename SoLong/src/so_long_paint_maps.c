@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 11:46:31 by javier            #+#    #+#             */
-/*   Updated: 2023/05/24 13:50:50 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:02:18 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,14 @@ void	paint_collec(t_so_long *c)
 	while (fil < c->h)
 	{
 		col = 0;
-
 		while (col < c->w)
 		{
 			if (c->map[fil][col] == 'C')
 			{	
-				mlx_image_to_window(c->mlx, c->bone, col * 64, fil * 64);
+				mlx_image_to_window(c->mlx, c->bone, col * S, fil * S);
 			}
 			col++;
 		}
 		fil++;
 	}
-
 }

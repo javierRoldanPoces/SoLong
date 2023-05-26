@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:39:21 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/23 20:10:07 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/26 23:49:34 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static int	all_one(t_so_long *c)
 		if (c->map[i][0] != '1' || (c->map[i][c->w - 1] != '1'))
 			return (1);
 	}
-	ft_printf("\nMapa rodeado de muros\n");
 	return (0);
 }
 
@@ -86,26 +85,25 @@ int	valid_path(char **c, int size_file, int size_col)
 		}
 		file++;
 	}
-	printf("\nMapa con salida posible\n");
 	return (0);
 }
+// map_valid devuelve 1 en el caso de que no sea válido y 0 si es valido 
 
 int	map_valid(t_so_long *c)
 {
 	char	**cpy;
 
 	if ((c->w == c->h) || c->w < 3 || c->h < 3)
-		return (write(1, "Map_Cuadrado\n", 13), 1);
+		return (ft_control_error(MAPA_NO_VALID, c), 1);
 	if (all_one(c) == 1)
-		return (ft_printf("Mapa no rodeando de muros \n"), 1);
+		return (ft_control_error(MAPA_NO_VALID, c), 1);
 	if (look(c, 'E') != 1 || look(c, 'P') != 1 || look(c, 'C') < 1)
-		return (ft_printf("no se cumplen requisitos del mapa"), 1);
+		return (ft_control_error(MAPA_NO_VALID, c), 1);
 	look_p(c);
 	cpy = cpy_matrix(c);
 	flood_fill(cpy, c->player[0], c->player[1]);
-	print_matrix(cpy, c->h, c->w);
 	if (valid_path(cpy, c->h, c->w) == 1)
-		return (printf("\nMapa sin salida\n"), free_cpy_matrix(cpy, c->h), 1);
+		return (ft_control_error(MAPA_NO_VALID, c), free_cpy_matrix(cpy, c->h), 1);
 	free_cpy_matrix(cpy, c->h);
 	return (0);
 }

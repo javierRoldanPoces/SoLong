@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:25 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/23 15:09:28 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:45:06 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,6 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 		s2cpy++;
 	}
 	return (0);
-}
-
-void	ft_leaks(void)
-{
-	system("leaks so_long");
 }
 
 char	**cpy_matrix(t_so_long *c)
@@ -90,10 +85,18 @@ void	look_p(t_so_long *c)
 			{
 				c->player[0] = file;
 				c->player[1] = col;
-				printf("perro encontrado\n");
 			}
 			col++;
 		}
 		file++;
 	}
+}
+
+void	c_found(t_so_long *so_long)
+{
+	mlx_delete_image(so_long->mlx, so_long->bone);
+	so_long->count_c--;
+	so_long->map[so_long->player[0]][so_long->player[1]] = '0';
+	if (so_long->count_c > 0)
+		paint_collec(so_long);
 }
