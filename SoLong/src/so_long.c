@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:17 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/26 23:48:50 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/27 10:14:13 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,14 @@ void	init_so_long(t_so_long *c)
 	c->player[1] = 0;
 	c->move = 0;
 	c->t_bg = mlx_load_png("img/fondo_playa.png");
-	c->t_dog = mlx_load_png("img/dog.png");
+	c->t_dog = mlx_load_png("img/dog_right.png");
 	c->t_wall = mlx_load_png("img/wall.png");
 	c->t_bone = mlx_load_png("img/bone.png");
-	//c->t_closed = mlx_load_png("img/closed.png");
 	c->t_open = mlx_load_png("img/open.png");
 	c->bg = mlx_texture_to_image(c->mlx, c->t_bg);
 	c->dog = mlx_texture_to_image(c->mlx, c->t_dog);
 	c->wall = mlx_texture_to_image(c->mlx, c->t_wall);
 	c->bone = mlx_texture_to_image(c->mlx, c->t_bone);
-	//c->closed = mlx_texture_to_image(c->mlx, c->t_closed);
 	c->open = mlx_texture_to_image(c->mlx, c->t_open);
 }
 
@@ -48,6 +46,8 @@ int	main(int argc, char **argv)
 
 	atexit(ft_leaks);
 	(void)argc;
+	g.w = 0;
+	g.h = 0;
 	read_maps(&g, argv[1]);
 	if (map_valid(&g) == 1)
 	{

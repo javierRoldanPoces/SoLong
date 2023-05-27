@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:52:25 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/26 20:45:06 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:43:09 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	**cpy_matrix(t_so_long *c)
 
 	cpy_matrix = (char **)ft_calloc(sizeof(char *), c->h + 1);
 	if (cpy_matrix == NULL)
-		return (write(1, "Memory error", 12), NULL);
+		return (ft_printf("Error\nReserva de memoria"), NULL);
 	fil = 0;
 	while (fil < c->h)
 	{

@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:54:20 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/26 19:14:10 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:59:10 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ typedef struct so_so_long
 	mlx_texture_t	*t_wall;
 	mlx_image_t		*bone;
 	mlx_texture_t	*t_bone;
-	//mlx_image_t		*closed;
-	//mlx_texture_t	*t_closed;
 	mlx_image_t		*open;
 	mlx_texture_t	*t_open;
 }	t_so_long;

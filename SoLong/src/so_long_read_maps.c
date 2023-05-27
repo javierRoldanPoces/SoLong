@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:58:08 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/26 23:52:28 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:56:41 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	read_maps(t_so_long *c, char *name_file)
 	file = open(name_file, O_RDONLY);
 	if (file < 0)
 		ft_printf("Error\nApertura de fichero");
-	c->w = 0;
-	c->h = 0;
 	size = (int)ft_strlen(name_file);
 	if (ft_memcmp(&name_file[size - 4], ".ber", 4))
 		ft_control_error(NO_BER, c);
@@ -52,6 +50,8 @@ void	read_maps_2(t_so_long *c, char *name_file)
 	f = 0;
 	c->map = (char **)ft_calloc(sizeof(char *), c->h + 1);
 	file = open(name_file, O_RDONLY);
+	if (file < 0)
+		ft_printf("Error\nApertura de fichero");
 	line = get_next_line(file);
 	c->map[0] = line;
 	while (c->map[f])
@@ -88,27 +88,6 @@ void	ft_delete_img(t_so_long *c)
 	mlx_delete_image(c->mlx, c->wall);
 	mlx_delete_texture(c->t_bone);
 	mlx_delete_image(c->mlx, c->bone);
-	// mlx_delete_texture(c->t_closed);
-	// mlx_delete_image(c->mlx, c->closed);
 	mlx_delete_texture(c->t_open);
 	mlx_delete_image(c->mlx, c->open);
 }
-
-// void	print_matrix(char **c, int size_file, int size_col)
-// {
-// 	int	fil;
-// 	int	col;
-
-// 	fil = 0;
-// 	while (fil < size_file)
-// 	{
-// 		col = 0;
-// 		write(1, "\n", 1);
-// 		while (col < size_col)
-// 		{
-// 			write(1, &c[fil][col], 1);
-// 			col++;
-// 		}
-// 		fil++;
-// 	}
-// }

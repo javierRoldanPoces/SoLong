@@ -6,7 +6,7 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 19:39:21 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/05/26 23:49:34 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/05/27 09:41:19 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	valid_path(char **c, int size_file, int size_col)
 	}
 	return (0);
 }
-// map_valid devuelve 1 en el caso de que no sea válido y 0 si es valido 
 
 int	map_valid(t_so_long *c)
 {
@@ -103,7 +102,10 @@ int	map_valid(t_so_long *c)
 	cpy = cpy_matrix(c);
 	flood_fill(cpy, c->player[0], c->player[1]);
 	if (valid_path(cpy, c->h, c->w) == 1)
-		return (ft_control_error(MAPA_NO_VALID, c), free_cpy_matrix(cpy, c->h), 1);
+	{
+		free_cpy_matrix(cpy, c->h);
+		return (ft_control_error(MAPA_NO_VALID, c), 1);
+	}
 	free_cpy_matrix(cpy, c->h);
 	return (0);
 }
