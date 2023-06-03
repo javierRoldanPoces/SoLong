@@ -6,11 +6,18 @@
 /*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:58:08 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/06/01 20:11:00 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/06/03 12:32:04 by Jroldan-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
+
+void	free_line(char	*line)
+{
+	if (line)
+		free(line);
+	line = 0;
+}
 
 void	read_maps(t_so_long *c, char *name_file)
 {
@@ -29,13 +36,18 @@ void	read_maps(t_so_long *c, char *name_file)
 	c->w = (int)ft_strlen(line) - 1;
 	while (line)
 	{
+		ft_printf("%s", line);
 		free(line);
 		line = get_next_line(file);
-		if (c->w != (int)ft_strlen(line) - 1 && ft_strlen(line))
+		if (line && c->w != (int)ft_strlen(line) - 1 || ft_strlen(line) == 1)
+		{
 			free(line);
-		c->h++;
+			line = 0;
+		}
+		//if(line)
+			c->h++;
+		ft_printf("%d", c->h);
 	}
-	c->h--;
 	free(line);
 	close(file);
 	read_maps_2(c, name_file);
