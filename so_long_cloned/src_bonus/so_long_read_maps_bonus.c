@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_read_maps_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Jroldan- <jroldan-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: javier <javier@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 18:58:08 by Jroldan-          #+#    #+#             */
-/*   Updated: 2023/06/03 12:32:04 by Jroldan-         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:57:22 by javier           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	read_maps(t_so_long *c, char *name_file)
 		ft_printf("%s", line);
 		free(line);
 		line = get_next_line(file);
-		if (line && c->w != (int)ft_strlen(line) - 1 || ft_strlen(line) == 1)
+		if (line && (c->w != (int)ft_strlen(line) - 1 || ft_strlen(line) == 1))
 		{
 			free(line);
 			line = 0;
